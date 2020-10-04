@@ -1,0 +1,33 @@
+{
+  "name": "caesar-cipher-cli",
+  "version": "1.0.0",
+  "description": "CLI which implements the Caesar's cipher algorithm",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "exec": "node src/index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "Dzmitry Raichau",
+  "license": "ISC",
+  "bin": "src/index.js",
+  "files": [
+    "src/**/*.js",
+    "!src/**/__mocks__/**",
+    "!src/**/*.spec.js"
+  ],
+  "jest": {
+    "automock": false,
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "commander": "^6.1.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "mock-stdin": "^1.0.0"
+  }
+}
