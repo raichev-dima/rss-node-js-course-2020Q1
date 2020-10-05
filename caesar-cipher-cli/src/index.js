@@ -3,9 +3,9 @@
 const util = require('util');
 const stream = require('stream');
 const commander = require('commander');
-const path = require('path');
 const fs = require('fs');
 const Caesar = require('./Caesar');
+const parseOptions = require('./parseOptions');
 
 const pipeline = util.promisify(stream.pipeline);
 
@@ -13,33 +13,13 @@ const program = new commander.Command();
 
 program.storeOptionsAsProperties(false).passCommandToAction(false);
 
-const Errors = {
-  ERR_SHIFT_CHECK:
-    'Shift value should be a number which is greater or equal to 0',
-  ERR_INVALID_ACTION: 'Action should be either encode or decode',
-};
+async function run(options) {
+  const { input, output, action, shift } = parseOptions(options);
 
-async function run({ input, output, action, shift }) {
-  if (!['encode', 'decode'].includes(action)) {
-    throw new Error(Errors.ERR_INVALID_ACTION);
-  }
-
-  const shiftValue = parseInt(shift);
-
-  if (!Number.isInteger(shiftValue)) {
-    throw new Error(Errors.ERR_SHIFT_CHECK);
-  }
-
-  if (shiftValue < 0) {
-    throw new Error(Errors.ERR_SHIFT_CHECK);
-  }
-
-  const filePath = (file) => (path.isAbsolute(file) ? file : path.join(file));
-
-  const stdin = input ? fs.createReadStream(filePath(input)) : process.stdin;
+  const stdin = input ? fs.createReadStream(input) : process.stdin;
 
   const stdout = output
-    ? fs.createWriteStream(filePath(output), {
+    ? fs.createWriteStream(output, {
         flags: 'a+',
       })
     : process.stdout;
@@ -47,8 +27,7 @@ async function run({ input, output, action, shift }) {
   const transform = new stream.Transform({
     transform(chunk, encoding, callback) {
       const data = chunk.toString();
-
-      const output = Caesar[action](data, shiftValue);
+      const output = Caesar[action](data, shift);
 
       callback(null, `${output.trim()}\n`);
     },
