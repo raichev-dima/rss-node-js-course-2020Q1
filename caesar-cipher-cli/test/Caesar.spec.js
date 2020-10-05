@@ -22,10 +22,6 @@ test('encode', () => {
   expect(
     Caesar.encode('КThis is secret. Message about "_" symbol!', 7)
   ).toEqual('КAopz pz zljyla. Tlzzhnl hivba "_" zftivs!');
-
-  expect(() => Caesar.encode('', -3)).toThrowError(
-    Caesar.Errors.SHIFT_CHECK_ERROR
-  );
 });
 
 test('decode', () => {
@@ -41,8 +37,4 @@ test('decode', () => {
   expect(
     Caesar.decode('КAopz pz zljyla. Tlzzhnl hivba "_" zftivs!', 7)
   ).toEqual('КThis is secret. Message about "_" symbol!');
-
-  expect(() => Caesar.decode('', -3)).toThrowError(
-    Caesar.Errors.SHIFT_CHECK_ERROR
-  );
 });

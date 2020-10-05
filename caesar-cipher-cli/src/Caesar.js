@@ -1,7 +1,3 @@
-const Errors = {
-  SHIFT_CHECK_ERROR: 'Shift value should be greater or equal to 0',
-};
-
 const ALPHABET = [
   'a',
   'b',
@@ -75,18 +71,10 @@ function cipher(str, shift) {
 }
 
 function encode(str, shift) {
-  if (shift < 0) {
-    throw new Error(Errors.SHIFT_CHECK_ERROR);
-  }
-
   return cipher(str, shift);
 }
 
 function decode(str, shift) {
-  if (shift < 0) {
-    throw new Error(Errors.SHIFT_CHECK_ERROR);
-  }
-
   return cipher(str, -shift);
 }
 
@@ -94,5 +82,4 @@ module.exports = {
   encode,
   decode,
   makeShift,
-  Errors,
 };
