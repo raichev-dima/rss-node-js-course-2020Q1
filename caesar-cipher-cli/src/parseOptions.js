@@ -6,7 +6,7 @@ const Errors = {
   ERR_SHIFT_CHECK: 'Shift value should be a number which is greater than 0',
   ERR_INVALID_ACTION: 'Action should be either encode or decode',
   ERR_INVALID_INPUT_FILE: 'Input file does not exist',
-  ERR_INVALID_OUTPUT_FILE: 'Action should be either encode or decode',
+  ERR_INVALID_OUTPUT_FILE: 'Output file does not exist',
 };
 
 const fileExists = util.promisify(fs.exists);
