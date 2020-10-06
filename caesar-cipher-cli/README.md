@@ -22,7 +22,7 @@ CLI tool should accept 4 options (short alias and full name):
 **Note: first you need to run `npm link` if you're using local package.**
 
 ```bash
-$ caesar-cipher-cli -a encode -s 7 -i "./input.txt" -o "./output.txt"
+$ caesar-cipher-cli -a encode -s 7 -i "./test/data/input.txt" -o "./test/data/output.txt"
 ```
 
 ```bash
@@ -42,5 +42,5 @@ $ caesar-cipher-cli --action decode --shift 7 --input decoded.txt --output plain
 Also, you can use npm scripts to run the cli:
 
 ```bash
-$ npm run exec -- -a encode -s 7 -i "./input.txt" -o "./output.txt"
+$ npm run exec -- -a encode -s 7 -i "./test/data/input.txt" -o "./test/data/output.txt"
 ```

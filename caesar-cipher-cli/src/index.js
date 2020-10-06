@@ -29,7 +29,7 @@ async function run(options) {
       const data = chunk.toString();
       const output = Caesar[action](data, shift);
 
-      callback(null, `${output.trim()}\n`);
+      callback(null, output);
     },
   });
 
