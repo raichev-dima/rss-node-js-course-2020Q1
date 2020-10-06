@@ -5,7 +5,7 @@ const stream = require('stream');
 const commander = require('commander');
 const fs = require('fs');
 const Caesar = require('./Caesar');
-const parseOptions = require('./parseOptions');
+const { parseOptions } = require('./parseOptions');
 
 const pipeline = util.promisify(stream.pipeline);
 
@@ -14,7 +14,7 @@ const program = new commander.Command();
 program.storeOptionsAsProperties(false).passCommandToAction(false);
 
 async function run(options) {
-  const { input, output, action, shift } = parseOptions(options);
+  const { input, output, action, shift } = await parseOptions(options);
 
   const stdin = input ? fs.createReadStream(input) : process.stdin;
 
