@@ -40,7 +40,14 @@ $ caesar-cipher-cli --action decode --shift 7 --input decoded.txt --output plain
 > `Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!`
 
 Also, you can use npm scripts to run the cli:
+**Note: make sure you to pass all your arguments after `--`**
 
 ```bash
 $ npm run exec -- -a encode -s 7 -i "./test/data/input.txt" -o "./test/data/output.txt"
+```
+
+Also, you can run `src/index` directly:
+
+```bash
+$ node src -a encode -s 7 -i "./test/data/input.txt" -o "./test/data/output.txt"
 ```
